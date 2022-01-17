@@ -9,8 +9,6 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  console.log(name);
-  console.log(email);
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':

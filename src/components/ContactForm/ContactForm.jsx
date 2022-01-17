@@ -6,16 +6,13 @@ import { contactsSelectors, contactsOperations } from '../../redux/contacts';
 import styles from './ContactForm.module.css';
 export default function ContactForm() {
   const [name, setName] = useState('');
-  console.log(name);
   const [number, setNumber] = useState('');
-  console.log(number);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getAllContacts);
 
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log({ name, value });
     switch (name) {
       case 'name':
         setName(value);
@@ -29,7 +26,6 @@ export default function ContactForm() {
   };
 
   const handleSubmit = e => {
-    console.log(e);
     e.preventDefault();
     if (contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`);
@@ -45,7 +41,13 @@ export default function ContactForm() {
   };
   return (
     <>
-      <Button className={styles.button }variant="outline-light" type="button" size="sm" onClick={() => navigate(-1)}>
+      <Button
+        className={styles.button}
+        variant="outline-light"
+        type="button"
+        size="sm"
+        onClick={() => navigate(-1)}
+      >
         Back to contact list
       </Button>
       <Container>
