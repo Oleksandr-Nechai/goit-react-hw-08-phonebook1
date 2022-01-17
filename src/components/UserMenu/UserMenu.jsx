@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'react-bootstrap/Button';
 import { authSelectors, authOperations } from '../../redux/auth';
 import styles from './UserMenu.module.css';
 
@@ -9,11 +8,15 @@ export default function UserMenu() {
 
   return (
     <>
-      <div className={styles.user__menu}>
-        <p className={styles.user__menu__text}>Hello, {email} </p>
-        <Button variant="primary" type="submit" onClick={() => dispatch(authOperations.logOut())}>
+      <div className={styles.userMenu}>
+        <p className={styles.userMenuText}>Hello, {email} </p>
+        <button
+          className={styles.userButton}
+          type="submit"
+          onClick={() => dispatch(authOperations.logOut())}
+        >
           Logout
-        </Button>
+        </button>
       </div>
     </>
   );

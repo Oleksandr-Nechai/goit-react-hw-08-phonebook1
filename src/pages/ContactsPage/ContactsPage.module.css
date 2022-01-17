@@ -2,3 +2,19 @@ a {
   text-decoration: none;
   color: white;
 }
+.button {
+  border: 1px solid red;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  width: 70px;
+  height: 40px;
+  border-radius: 4px;
+  text-align: center;
+  display: block;
+  background-color: white;
+  color: black;
+}
+.add {
+  color: black;
+}

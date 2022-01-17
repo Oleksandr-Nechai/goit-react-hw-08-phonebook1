@@ -37,6 +37,7 @@ export default function Login() {
           name="email"
           type="email"
           placeholder="Enter email"
+          className={styles.formInput}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -47,9 +48,10 @@ export default function Login() {
           name="password"
           type="password"
           placeholder="Password"
+          className={styles.formInput}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className={styles.button}>
         LOG IN
       </Button>
     </Form>

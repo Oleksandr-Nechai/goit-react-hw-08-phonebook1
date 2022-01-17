@@ -17,6 +17,7 @@ export default function ContactList() {
             type="button"
             onClick={() => dispatch(contactsOperations.deleteContact(id))}
             variant="outline-danger"
+            className={styles.button}
           >
             Delete
           </Button>

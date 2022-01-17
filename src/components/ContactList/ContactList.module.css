@@ -13,7 +13,7 @@
   font-weight: 500;
   color: white;
   display: flex;
-}
+} */
 
 .button {
   display: flex;
@@ -30,7 +30,7 @@
   background-color: red;
 }
 
-.span {
+/* .span {
   margin-left: 25px;
 } */
 
@@ -42,8 +42,8 @@
 .contact__item {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-right: 10px;
+  margin-right: 25px;
+  font-size: 22px;
 }
 .contact__item:not(:last-child) {
   margin-bottom: 10px;

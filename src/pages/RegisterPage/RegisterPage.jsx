@@ -43,6 +43,7 @@ export default function Register() {
           name="name"
           type="text"
           placeholder="Enter your name"
+          className={styles.formInput}
         />
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
@@ -55,6 +56,7 @@ export default function Register() {
           name="email"
           type="email"
           placeholder="Enter email"
+          className={styles.formInput}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
@@ -68,9 +70,10 @@ export default function Register() {
           name="password"
           type="password"
           placeholder="Password"
+          className={styles.formInput}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className={styles.button}>
         SIGN UP
       </Button>
     </Form>

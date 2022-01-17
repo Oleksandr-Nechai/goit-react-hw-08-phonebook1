@@ -31,7 +31,7 @@ export default function ContactForm() {
   const handleSubmit = e => {
     console.log(e);
     e.preventDefault();
-    if (contacts.find(contact => contact.name === name)) {
+    if (contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`);
       return;
     }
@@ -45,7 +45,7 @@ export default function ContactForm() {
   };
   return (
     <>
-      <Button variant="outline-light" type="button" size="sm" onClick={() => navigate(-1)}>
+      <Button className={styles.button }variant="outline-light" type="button" size="sm" onClick={() => navigate(-1)}>
         Back to contact list
       </Button>
       <Container>
@@ -74,7 +74,7 @@ export default function ContactForm() {
               required
             />
           </label>
-          <Button variant="primary" type="submit" size="sm">
+          <Button variant="primary" type="submit" size="sm" className={styles.button}>
             Add contact
           </Button>
         </form>

@@ -17,7 +17,7 @@ export default function Contacts() {
     <Container>
       {contactsList.length > 0 && <Filter />}
       <ContactList />
-      <Button variant="primary" type="button" size="sm">
+      <Button variant="primary" type="button" size="sm" className={styles.button}>
         <Link to="/contacts/addNewContact" className={styles.add}>
           Add contact
         </Link>
