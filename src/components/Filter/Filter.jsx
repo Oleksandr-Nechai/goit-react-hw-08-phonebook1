@@ -1,28 +1,24 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/contacts/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsSelectors, changeFilter } from '../../redux/contacts';
 import styles from './Filter.module.css';
 
-const Filter = () => {
+export default function Filter() {
+  const value = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
-  const handleChange = e => dispatch(changeFilter(e.target.value));
-  const value = useSelector(state => state.filter);
 
   return (
-    <div className={styles.section}>
-      <label>
-        <h2 className={styles.title}>Find contact by name</h2>
-        <input
-          type="text"
-          name="filter"
-          value={value}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="find name..."
-        />
-      </label>
-    </div>
+    <label className={styles.label}>
+      Find contacts by name
+      <input
+        className={styles.input}
+        value={value}
+        onChange={e => dispatch(changeFilter(e.target.value))}
+        type="text"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+        required
+      />
+    </label>
   );
-};
-
-export default Filter;
+}

@@ -1,4 +1,4 @@
-.list {
+/* .list {
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: 500;
@@ -32,4 +32,19 @@
 
 .span {
   margin-left: 25px;
+} */
+
+.contact__list {
+  width: 500px;
+  margin-left: 20px;
+  padding: 0;
+}
+.contact__item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+.contact__item:not(:last-child) {
+  margin-bottom: 10px;
 }

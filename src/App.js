@@ -1,27 +1,85 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getContacts } from './redux/contacts/operations';
-import Form from './components/ContactForm';
-import Contacts from './components/ContactList';
-import Filter from './components/Filter';
-import styles from './App.css';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Routes } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from './redux/auth';
+import { ProgressBar } from 'react-bootstrap';
+import Container from './components/Container';
+import AppBar from './components/AppBar';
+import HomePage from './pages/HomePage';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
+const ContactForm = lazy(() => import('./components/ContactForm'));
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
+  const isRefreshingPage = useSelector(authSelectors.getIsRefreshingPage);
 
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   return (
-    <div className={styles.section}>
-      <h1 className={styles.title}>Phonebook</h1>
-      <Form />
-      <h2 className={styles.title}>Contacts</h2>
-      <Filter />
-      <Contacts />
-    </div>
+    <Container>
+      <AppBar />
+
+      {!isRefreshingPage ? (
+        <Suspense
+          fallback={
+            <div>
+              <ProgressBar striped variant="warning" now={60} />
+            </div>
+          }
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute navigateTo="/contacts">
+                  <HomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute navigateTo="/contacts" restricted>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute navigateTo="/contacts" restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute navigateTo="/login">
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/contacts/addNewContact"
+              element={
+                <PrivateRoute navigateTo="/login">
+                  <ContactForm />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
+      ) : (
+        <b>Loading...</b>
+      )}
+    </Container>
   );
-};
+}
 
 export default App;

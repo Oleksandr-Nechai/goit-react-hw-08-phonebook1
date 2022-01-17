@@ -14,3 +14,21 @@
   font-size: 20px;
   margin-bottom: 30px;
 }
+/* .label {
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-left: 20px;
+	margin-bottom: 15px;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.input {
+	width: 200px;
+	height: 20px;
+}
+
+.input:focus {
+	border: 3px solid rgba(138, 138, 247, 0.1);
+} */

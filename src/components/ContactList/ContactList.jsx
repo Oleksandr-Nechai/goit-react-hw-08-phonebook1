@@ -1,32 +1,27 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeContact } from '../../redux/contacts/operations';
-import { getVisibleContacts } from '../../redux/contacts/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'react-bootstrap';
+import { contactsSelectors, contactsOperations } from '../../redux/contacts';
 import styles from './ContactList.module.css';
 
-function ContactList() {
+export default function ContactList() {
+  const contactsList = useSelector(contactsSelectors.getVisibleContacts);
   const dispatch = useDispatch();
-  const contacts = useSelector(getVisibleContacts);
+
   return (
-    <div>
-      <ul className={styles.list}>
-        {contacts.map(contact => (
-          <li key={contact.id} className={styles.list_li}>
-            <span className={styles.span}>{contact.name}</span>
-            <span className={styles.span}>{contact.phone}</span>
-            <button
-              type="button"
-              id={contact.id}
-              onClick={() => dispatch(removeContact(contact.id))}
-              className={styles.button}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.contact__list}>
+      {contactsList.map(({ id, name, number }) => (
+        <li className={styles.contact__item} key={id}>
+          {name}: {number}
+          <Button
+            type="button"
+            onClick={() => dispatch(contactsOperations.deleteContact(id))}
+            variant="outline-danger"
+          >
+            Delete
+          </Button>
+        </li>
+      ))}
+    </ul>
   );
 }
-
-export default ContactList;
