@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   fetchContactsRequest,
   fetchContactsSuccess,
@@ -53,4 +52,5 @@ const contactsOperations = {
   addContact,
   deleteContact,
 };
+
 export default contactsOperations;

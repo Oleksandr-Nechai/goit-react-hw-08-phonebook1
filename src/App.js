@@ -25,7 +25,6 @@ function App() {
     <div className={styles.body}>
       <Container>
         <AppBar />
-
         {!isRefreshingPage ? (
           <Suspense
             fallback={
